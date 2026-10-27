@@ -13,7 +13,7 @@ loopCondition = 1
 pageNo = 1
 scoreslinks = []
 
-# Starts the crawler, starts at startYear page
+# Starts the crawler, starts at startYear page, works backwards to keep date in chronological order
 url = "https://www.dci.org/scores/?location=&season=" + str(startYear) + "&pageno=1"
 driver.get(url)
 time.sleep(3)
