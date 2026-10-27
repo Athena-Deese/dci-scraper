@@ -9,7 +9,7 @@ import os
 driver = webdriver.Firefox()
 
 startYear = 2013
-scoreslinks = ['https://www.dci.org/scores/final-scores/2013-dci-world-championship-finals/','https://www.dci.org/scores/final-scores/2013-southwest-corps-connection/']
+scoreslinks = ['https://www.dci.org/scores/final-scores/2013-southwest-corps-connection/', 'https://www.dci.org/scores/final-scores/2013-dci-world-championship-finals/']
 i = len(scoreslinks) - 1
 while i >= 0 :
     url = scoreslinks[i]
@@ -34,6 +34,19 @@ while i >= 0 :
     # Opens up the data folder relating to the year of the competition
     with open("data/competitions/" + str(startYear) + ".csv", "r") as file:
         data = file.read()
+        
+        # Checks if either the competition has already been checked, or if it is unscored
+        # Then skips the competition is either is true
+        if(data.__contains__(fileDate)) :
+            print("Skipped")
+            i -= 1
+            continue
+        checks = driver.find_elements(By.CLASS_NAME, "col-2")
+        if(checks[6].text.__contains__("Not scored")):
+            print("Skipped")
+            i -= 1
+            continue
+        print("Was not skipped")
     
     
 
