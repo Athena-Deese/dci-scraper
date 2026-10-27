@@ -35,7 +35,7 @@ while i >= 0 :
     print(competition)
         
     # Opens up the file that represents the current year
-    with open(str(startYear) + ".csv", "r") as file:
+    with open("data/competitions/" + str(startYear) + ".csv", "r") as file:
         data = file.read()
         checkCon = 0
         
@@ -53,7 +53,7 @@ while i >= 0 :
         # If it is, it skips this competition
         # If the competition is not scored, it skips this competition
         if not data.__contains__(fileDate) and (checkCon == 0 or checkCon == 2):
-            data = open(str(startYear) + ".csv", "w")
+            data = open("data/competitions/" + str(startYear) + ".csv", "w")
             data.write(competition + "\n")
             data.write(fileDate)
             
@@ -84,7 +84,7 @@ while i >= 0 :
                     
                 # If it is a normal competition it uses these offsets to gather scores per groups
                 if(checkCon == 0):
-                    with open(groups[k].text + ".csv", 'w') as file:
+                    with open("data/groups/" + groups[k].text + ".csv", 'w') as file:
                         file.write(fileDate + "\n")
                         file.write("GE Total: " + pageScores[scrCount].text + "\n")
                         scrCount += 4
@@ -97,7 +97,7 @@ while i >= 0 :
                 
                 # If it is a regional or finals competition it uses these offsets to gather scores per groups
                 elif(checkCon == 2) :
-                    with open(groups[k].text + ".csv", 'w') as file :
+                    with open("data/groups/" + groups[k].text + ".csv", 'w') as file :
                         file.write(fileDate + "\n")
                         file.write("GE Total: " + pageScores[scrCount].text + "\n")
                         scrCount += 4
